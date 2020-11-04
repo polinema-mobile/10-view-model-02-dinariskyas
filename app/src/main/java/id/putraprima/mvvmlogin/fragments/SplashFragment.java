@@ -25,7 +25,6 @@ public class SplashFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FragmentSplashBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false);
-        binding.setLifecycleOwner(this);
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
