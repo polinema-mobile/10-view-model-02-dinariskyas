@@ -1,8 +1,8 @@
 package id.putraprima.mvvmlogin.models;
 
 public class User {
-    private String email;
-    private String password;
+    private String email = "dinarisky04@gmail.com";
+    private String password = "dinarisky";
 
     public User(){
 
@@ -27,4 +27,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
