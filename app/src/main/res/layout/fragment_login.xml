@@ -37,7 +37,8 @@
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:text="@={viewModel.email}"
+            android:text="@={viewModel.loginLiveData.email}"
+            app:error="@{viewModel.errorEmail}"
             app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -49,7 +50,8 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:text="@={viewModel.password}"
+            android:text="@={viewModel.loginLiveData.password}"
+            app:error="@{viewModel.errorPassword}"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
