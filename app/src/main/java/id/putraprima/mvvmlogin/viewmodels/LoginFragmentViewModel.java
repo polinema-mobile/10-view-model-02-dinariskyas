@@ -65,6 +65,10 @@ public class LoginFragmentViewModel extends ViewModel {
         return this.errorMessagePassword;
     }
 
+    public LiveData<Boolean> loggedInLiveData() {
+        return this.isLoggedIn;
+    }
+
     public LiveData<User> getLoginLiveData(){
         return this.loginFragmentMutableLiveData;
     }

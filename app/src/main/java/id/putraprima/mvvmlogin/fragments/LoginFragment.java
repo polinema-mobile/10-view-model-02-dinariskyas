@@ -38,17 +38,19 @@ public class LoginFragment extends Fragment {
         loginFragmentViewModel = new ViewModelProvider(this, loginFragmentViewModelFactory).get(LoginFragmentViewModel.class);
         binding.setViewModel(loginFragmentViewModel);
         binding.setLifecycleOwner(this);
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+        return binding.getRoot();
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loginFragmentViewModel.loggedInLiveData().observe(this.getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
-            public void onClick(View view) {
-                if (loginFragmentViewModel.isLogin()){
-                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
-                }else {
-                    binding.editTextEmail.setError("Email tidak sesuai");
-                    binding.editTextPassword.setError("Password tidak sesuai");
+            public void onChanged(Boolean aBoolean) {
+                if (loginFragmentViewModel.loggedInLiveData().getValue() == true){
+                    bundle.putString("email", loginFragmentViewModel.getLoginLiveData().getValue().getEmail());
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment,bundle);
                 }
             }
         });
-        return binding.getRoot();
     }
 }
