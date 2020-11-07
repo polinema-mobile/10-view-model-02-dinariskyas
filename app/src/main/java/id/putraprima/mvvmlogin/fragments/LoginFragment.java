@@ -2,8 +2,11 @@ package id.putraprima.mvvmlogin.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -20,6 +23,7 @@ import id.putraprima.mvvmlogin.viewmodels.LoginFragmentViewModelFactory;
 
 public class LoginFragment extends Fragment {
     private LoginFragmentViewModel loginFragmentViewModel;
+    Bundle bundle = new Bundle();
     public LoginFragment() {
         // Required empty public constructor
     }

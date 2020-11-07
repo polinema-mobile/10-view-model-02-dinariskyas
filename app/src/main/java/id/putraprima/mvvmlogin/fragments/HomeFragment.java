@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import id.putraprima.mvvmlogin.R;
 import id.putraprima.mvvmlogin.databinding.FragmentHomeBinding;
-import id.putraprima.mvvmlogin.viewmodels.HomeFragmentViewModel;
 
 public class HomeFragment extends Fragment {
     public String email;
@@ -25,6 +24,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        binding.setLifecycleOwner(this);
         binding.textView.setText(getArguments().getString("email"));
         return binding.getRoot();
     }

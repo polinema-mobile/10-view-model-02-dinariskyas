@@ -10,8 +10,12 @@ import id.putraprima.mvvmlogin.models.User;
 
 public class LoginFragmentViewModel extends ViewModel {
     private MutableLiveData<User> loginFragmentMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isLoggedIn = new MutableLiveData<>();
+    private MutableLiveData<String> errorMessageEmail = new MutableLiveData<>();
+    private MutableLiveData<String> errorMessagePassword = new MutableLiveData<>();
     private User user;
-    public String email, password;
+    private String email = "dinarisky04@gmail.com";
+    private String password = "dinarisky";
 
     public LoginFragmentViewModel(User user){
         this.user = user;
@@ -19,14 +23,45 @@ public class LoginFragmentViewModel extends ViewModel {
 
     }
 
-    public boolean isLogin() {
-        if(email.equals(user.getEmail()) && password.equals(user.getPassword())){
-            return true;
-        }else{
-            return false;
+    public void isLogin() {
+        Log.d("Email", user.email);
+        Log.d("Password", user.password);
+        isLoggedIn.setValue(false);
+
+        if (user.email.equals(email) && user.password.equals(password)) {
+            loginFragmentMutableLiveData.setValue(user);
+            isLoggedIn.setValue(true);
+            return;
+        } else if (user.isEmailValid()) {
+            errorMessageEmail.setValue("Isikan email yang sesuai"); // set pesan
+            isLoggedIn.setValue(false);
+            return;
+        } else if (user.email.isEmpty() && user.password.isEmpty()) {
+            errorMessageEmail.setValue("Isikan email yang sesuai"); // set pesan
+            errorMessagePassword.setValue("Isikan password yang sesuai"); // set pesan
+            isLoggedIn.setValue(false);
+            return;
+        } else if (user.email.equals(email) && user.password.isEmpty() || user.password == null || !user.password.equals(password)){
+            errorMessagePassword.setValue("Isikan password yang sesuai");
+            isLoggedIn.setValue(false);
+            return;
+        } else if (user.email.isEmpty() || user.email == null && user.password.equals(password)) {
+            errorMessagePassword.setValue("Isikan alamat yang sesuai");
+            isLoggedIn.setValue(false);
+            return;
+        } else if (!user.email.equals(email) || !user.password.equals(password)) {
+            errorMessageEmail.setValue("Isikan alamat email yang sesuai");
+            errorMessagePassword.setValue("Isikan password yang sesuai");
+            isLoggedIn.setValue(false);
+            return;
         }
     }
-    public LiveData<User> userLiveData(){
-        return loginFragmentMutableLiveData;
+
+    public LiveData<String> getErrorEmail(){
+        return this.errorMessageEmail;
+    }
+
+    public LiveData<String> getErrorPassword(){
+        return this.errorMessagePassword;
     }
 }

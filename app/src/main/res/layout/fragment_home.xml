@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="fragment"
-            type="id.putraprima.mvvmlogin.viewmodels.HomeFragmentViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,11 +12,14 @@
         android:layout_height="match_parent"
         tools:context=".fragments.HomeFragment">
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{fragment.toString()}"
+            android:text="Welcome"
+            android:textSize="28sp"
+            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
